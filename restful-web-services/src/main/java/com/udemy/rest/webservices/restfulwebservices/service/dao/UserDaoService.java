@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import com.google.common.collect.Lists;
 import com.udemy.rest.webservices.restfulwebservices.service.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -17,7 +18,7 @@ public class UserDaoService {
     private static int usersCount = 0;
 
     static {
-        users = List.of(
+        users = Lists.newArrayList(
             User.builder().id(++usersCount).name("User 123").birthDate(new Date()).build(),
             User.builder().id(++usersCount).name("User 456").birthDate(new Date()).build(),
             User.builder().id(++usersCount).name("User 789").birthDate(new Date()).build()
