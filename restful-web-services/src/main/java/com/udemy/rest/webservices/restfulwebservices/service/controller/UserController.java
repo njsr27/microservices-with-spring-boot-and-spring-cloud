@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.udemy.rest.webservices.restfulwebservices.exception.UserNotFoundException;
 import com.udemy.rest.webservices.restfulwebservices.service.dao.UserDaoService;
 import com.udemy.rest.webservices.restfulwebservices.service.model.User;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +21,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-public class UserResource {
+public class UserController {
 
     final UserDaoService userDaoService;
 
@@ -31,8 +33,10 @@ public class UserResource {
     }
 
     @GetMapping("/users/{id}")
+    @SneakyThrows
     public User getUser(@PathVariable Integer id) {
-        return userDaoService.findOne(id);
+        return Optional.ofNullable(userDaoService.findOne(id))
+            .orElseThrow(() -> new UserNotFoundException(id.toString()));
     }
 
     @PostMapping("/users")
