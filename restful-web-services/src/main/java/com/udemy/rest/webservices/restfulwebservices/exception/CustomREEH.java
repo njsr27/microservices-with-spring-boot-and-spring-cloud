@@ -30,4 +30,11 @@ public class CustomREEH extends ResponseEntityExceptionHandler {
 
         return new ResponseEntity(exceptionResponse, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(PostNotFoundException.class)
+    public final ResponseEntity<Object> handlePostNotFoundExceptions(PostNotFoundException ex, WebRequest request) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
+
+        return new ResponseEntity(exceptionResponse, HttpStatus.NOT_FOUND);
+    }
 }

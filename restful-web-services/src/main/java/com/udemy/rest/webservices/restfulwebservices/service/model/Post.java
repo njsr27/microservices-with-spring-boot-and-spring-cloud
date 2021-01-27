@@ -1,21 +1,16 @@
 package com.udemy.rest.webservices.restfulwebservices.service.model;
 
-import java.util.Date;
-import java.util.List;
-
 import lombok.Builder;
 import lombok.Value;
 
 @Value
 @Builder
-public class User {
+public class Post {
 
     Integer id;
 
-    String name;
+    String title;
 
-    Date birthDate;
-
-    List<Post> posts;
+    String message;
 
 }
