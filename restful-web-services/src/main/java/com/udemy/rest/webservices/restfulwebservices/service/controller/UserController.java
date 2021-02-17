@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +21,7 @@ import java.util.Optional;
 @RestController
 @RequiredArgsConstructor
 public class UserController {
-    s
+    
     final UserDaoService userDaoService;
 
     final ObjectMapper mapper;
@@ -37,7 +38,7 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<StatusDetails> createUser(@RequestBody User user) {
+    public ResponseEntity<StatusDetails> createUser(@Valid @RequestBody User user) {
         return Optional.ofNullable(userDaoService.save(user))
                 .map(createdUser ->
                         ResponseEntity

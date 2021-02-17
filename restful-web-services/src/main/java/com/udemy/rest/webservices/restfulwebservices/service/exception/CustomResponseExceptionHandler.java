@@ -1,7 +1,9 @@
 package com.udemy.rest.webservices.restfulwebservices.service.exception;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +17,7 @@ import java.util.Date;
 // compared to the exception alone
 @ControllerAdvice
 @RestController
-public class CustomREEH extends ResponseEntityExceptionHandler {
+public class CustomResponseExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request) {
@@ -37,4 +39,13 @@ public class CustomREEH extends ResponseEntityExceptionHandler {
 
         return new ResponseEntity(exceptionResponse, HttpStatus.NOT_FOUND);
     }
+
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(
+            MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), "Validation failed", ex.getBindingResult().toString()); //You can customize your error message here
+
+        return new ResponseEntity(exceptionResponse, HttpStatus.BAD_REQUEST);
+    }
+
 }
