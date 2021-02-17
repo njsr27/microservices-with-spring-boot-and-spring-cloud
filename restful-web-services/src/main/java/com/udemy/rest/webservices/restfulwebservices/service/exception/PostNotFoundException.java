@@ -1,4 +1,4 @@
-package com.udemy.rest.webservices.restfulwebservices.exception;
+package com.udemy.rest.webservices.restfulwebservices.service.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -14,5 +14,5 @@ public class PostNotFoundException extends RuntimeException {
         super(String.format(MESSAGE, id));
         log.error(String.format(MESSAGE, id));
     }
-    
+
 }

@@ -1,8 +1,8 @@
-package com.udemy.rest.webservices.restfulwebservices.exception;
-
-import java.util.Date;
+package com.udemy.rest.webservices.restfulwebservices.service.exception;
 
 import lombok.Data;
+
+import java.util.Date;
 
 @Data
 public class ExceptionResponse {

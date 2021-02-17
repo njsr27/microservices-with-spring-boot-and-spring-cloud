@@ -1,6 +1,4 @@
-package com.udemy.rest.webservices.restfulwebservices.exception;
-
-import java.util.Date;
+package com.udemy.rest.webservices.restfulwebservices.service.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +7,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import java.util.Date;
 
 // This is created to make a standard structure for the whole organization, in this example,
 // we are returning the same status but with different fields
