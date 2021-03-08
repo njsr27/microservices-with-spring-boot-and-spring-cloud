@@ -9,12 +9,12 @@ import org.springframework.util.Assert;
 @SpringBootTest
 class RestfulWebServicesApplicationTests {
 
-	@Autowired
-	ApplicationContext applicationContext;
+    @Autowired
+    ApplicationContext applicationContext;
 
-	@Test
-	void contextLoads() {
-		Assert.notNull(applicationContext, "Context must load!");
-	}
+    @Test
+    void contextLoads() {
+        Assert.notNull(applicationContext, "Context must load!");
+    }
 
 }
