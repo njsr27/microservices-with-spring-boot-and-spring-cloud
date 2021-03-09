@@ -18,12 +18,12 @@ import javax.persistence.Id;
 @Entity
 public class Post {
 
-    @Id
-    @GeneratedValue
-    Integer id;
+  @Id
+  @GeneratedValue
+  Integer id;
 
-    String title;
+  String title;
 
-    String message;
+  String message;
 
 }

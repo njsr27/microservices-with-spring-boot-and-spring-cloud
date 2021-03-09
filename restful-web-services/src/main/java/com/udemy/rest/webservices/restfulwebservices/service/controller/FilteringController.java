@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class FilteringController {
 
-    @GetMapping("/filtering")
-    public FilteredBean getExample() {
-        return new FilteredBean("value1", "value2", "password");
-    }
+  @GetMapping("/filtering")
+  public FilteredBean getExample() {
+    return new FilteredBean("value1", "value2", "password");
+  }
 }

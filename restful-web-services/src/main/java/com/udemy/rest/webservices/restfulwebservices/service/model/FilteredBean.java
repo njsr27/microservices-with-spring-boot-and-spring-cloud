@@ -8,11 +8,11 @@ import lombok.Data;
 @AllArgsConstructor
 public class FilteredBean {
 
-    String value1;
+  String value1;
 
-    String value2;
+  String value2;
 
-    @JsonIgnore
-    String importantPassword;
+  @JsonIgnore
+  String importantPassword;
 
 }

@@ -8,19 +8,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloWorldController {
 
-    @GetMapping("/helloWorld")
-    public String helloWorld() {
-        return "Hello world!";
-    }
+  @GetMapping("/helloWorld")
+  public String helloWorld() {
+    return "Hello world!";
+  }
 
-    @GetMapping("/helloWorldBean")
-    public HelloWorldBean helloWorldBean() {
-        return HelloWorldBean.builder().message("Hello world!").build();
-    }
+  @GetMapping("/helloWorldBean")
+  public HelloWorldBean helloWorldBean() {
+    return HelloWorldBean.builder().message("Hello world!").build();
+  }
 
-    @GetMapping("/hello/{name}")
-    public String helloName(@PathVariable String name) {
-        return String.format("Hello %s!", name);
-    }
+  @GetMapping("/hello/{name}")
+  public String helloName(@PathVariable String name) {
+    return String.format("Hello %s!", name);
+  }
 
 }

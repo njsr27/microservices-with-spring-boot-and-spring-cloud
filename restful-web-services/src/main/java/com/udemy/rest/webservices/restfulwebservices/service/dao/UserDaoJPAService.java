@@ -13,27 +13,27 @@ import java.util.Optional;
 @Component
 public class UserDaoJPAService {
 
-    @Autowired
-    UserRepository userRepository;
+  @Autowired
+  UserRepository userRepository;
 
-    public List<User> findAll() {
-        return userRepository.findAll();
-    }
+  public List<User> findAll() {
+    return userRepository.findAll();
+  }
 
-    public Optional<User> findOne(Integer id) {
-        return userRepository.findById(id);
-    }
+  public Optional<User> findOne(Integer id) {
+    return userRepository.findById(id);
+  }
 
-    public User save(User user) {
-        return userRepository.save(user);
-    }
+  public User save(User user) {
+    return userRepository.save(user);
+  }
 
-    public void delete(Integer id) {
-        userRepository.deleteById(id);
-    }
+  public void delete(Integer id) {
+    userRepository.deleteById(id);
+  }
 
-    public Optional<User> findPosts(Integer id) {
-        return userRepository.findById(id);
-    }
+  public Optional<User> findPosts(Integer id) {
+    return userRepository.findById(id);
+  }
 
 }

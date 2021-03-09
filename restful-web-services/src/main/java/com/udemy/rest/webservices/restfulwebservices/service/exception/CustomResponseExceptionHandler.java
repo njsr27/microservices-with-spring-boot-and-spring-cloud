@@ -19,33 +19,33 @@ import java.util.Date;
 @RestController
 public class CustomResponseExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(Exception.class)
-    public final ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request) {
-        ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
+  @ExceptionHandler(Exception.class)
+  public final ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request) {
+    ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
 
-        return new ResponseEntity(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+    return new ResponseEntity(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+  }
 
-    @ExceptionHandler(UserNotFoundException.class)
-    public final ResponseEntity<Object> handleUserNotFoundExceptions(UserNotFoundException ex, WebRequest request) {
-        ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
+  @ExceptionHandler(UserNotFoundException.class)
+  public final ResponseEntity<Object> handleUserNotFoundExceptions(UserNotFoundException ex, WebRequest request) {
+    ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
 
-        return new ResponseEntity(exceptionResponse, HttpStatus.NOT_FOUND);
-    }
+    return new ResponseEntity(exceptionResponse, HttpStatus.NOT_FOUND);
+  }
 
-    @ExceptionHandler(PostNotFoundException.class)
-    public final ResponseEntity<Object> handlePostNotFoundExceptions(PostNotFoundException ex, WebRequest request) {
-        ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
+  @ExceptionHandler(PostNotFoundException.class)
+  public final ResponseEntity<Object> handlePostNotFoundExceptions(PostNotFoundException ex, WebRequest request) {
+    ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
 
-        return new ResponseEntity(exceptionResponse, HttpStatus.NOT_FOUND);
-    }
+    return new ResponseEntity(exceptionResponse, HttpStatus.NOT_FOUND);
+  }
 
-    @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(
-        MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), "Validation failed", ex.getBindingResult().toString()); //You can customize your error message here
+  @Override
+  protected ResponseEntity<Object> handleMethodArgumentNotValid(
+    MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+    ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), "Validation failed", ex.getBindingResult().toString()); //You can customize your error message here
 
-        return new ResponseEntity(exceptionResponse, HttpStatus.BAD_REQUEST);
-    }
+    return new ResponseEntity(exceptionResponse, HttpStatus.BAD_REQUEST);
+  }
 
 }

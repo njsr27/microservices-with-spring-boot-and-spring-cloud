@@ -7,7 +7,7 @@ import lombok.Value;
 @Builder
 public class HelloWorldBean {
 
-    String message;
+  String message;
 
 }
 

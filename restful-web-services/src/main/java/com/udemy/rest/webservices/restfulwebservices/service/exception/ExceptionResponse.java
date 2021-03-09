@@ -7,15 +7,15 @@ import java.util.Date;
 @Data
 public class ExceptionResponse {
 
-    private Date timestamp;
+  private Date timestamp;
 
-    private String message;
+  private String message;
 
-    private String details;
+  private String details;
 
-    public ExceptionResponse(final Date timestamp, final String message, final String details) {
-        this.timestamp = timestamp;
-        this.message = message;
-        this.details = details;
-    }
+  public ExceptionResponse(final Date timestamp, final String message, final String details) {
+    this.timestamp = timestamp;
+    this.message = message;
+    this.details = details;
+  }
 }

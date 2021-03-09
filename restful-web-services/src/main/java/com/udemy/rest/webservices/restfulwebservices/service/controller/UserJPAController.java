@@ -22,67 +22,67 @@ import java.util.Optional;
 @RequestMapping("/JPA")
 public class UserJPAController {
 
-    final UserDaoJPAService userDaoJPAService;
+  final UserDaoJPAService userDaoJPAService;
 
-    final ObjectMapper mapper;
+  final ObjectMapper mapper;
 
-    @GetMapping("/users")
-    public List<User> getUsers() {
-        return userDaoJPAService.findAll();
-    }
+  @GetMapping("/users")
+  public List<User> getUsers() {
+    return userDaoJPAService.findAll();
+  }
 
-    @GetMapping("/users/{id}")
-    public User getUser(@PathVariable Integer id) {
-        return userDaoJPAService.findOne(id)
-            .orElseThrow(() -> new UserNotFoundException(id.toString()));
-    }
+  @GetMapping("/users/{id}")
+  public User getUser(@PathVariable Integer id) {
+    return userDaoJPAService.findOne(id)
+      .orElseThrow(() -> new UserNotFoundException(id.toString()));
+  }
 
-    @PostMapping("/users")
-    public ResponseEntity<StatusDetails> createUser(@Valid @RequestBody User user) {
-        return Optional.ofNullable(userDaoJPAService.save(user))
-            .map(createdUser ->
-                ResponseEntity
-                    .created(
-                        ServletUriComponentsBuilder
-                            .fromCurrentRequest()
-                            .path("/{id}")
-                            .buildAndExpand(createdUser.getId())
-                            .toUri()
-                    )
-                    .body(
-                        StatusDetails.builder()
-                            .message("User created successfully!")
-                            .build()
-                    )
-            )
-            .orElseGet(() -> {
-                log.error("Error during user creation!");
-                return ResponseEntity
-                    .status(500)
-                    .body(
-                        StatusDetails.builder()
-                            .message("Error during user creation!")
-                            .build()
-                    );
-            });
-    }
-
-    @DeleteMapping("/users/{id}")
-    public ResponseEntity<Object> deleteUser(@PathVariable Integer id) {
-        userDaoJPAService.delete(id);
+  @PostMapping("/users")
+  public ResponseEntity<StatusDetails> createUser(@Valid @RequestBody User user) {
+    return Optional.ofNullable(userDaoJPAService.save(user))
+      .map(createdUser ->
+        ResponseEntity
+          .created(
+            ServletUriComponentsBuilder
+              .fromCurrentRequest()
+              .path("/{id}")
+              .buildAndExpand(createdUser.getId())
+              .toUri()
+          )
+          .body(
+            StatusDetails.builder()
+              .message("User created successfully!")
+              .build()
+          )
+      )
+      .orElseGet(() -> {
+        log.error("Error during user creation!");
         return ResponseEntity
-            .ok()
-            .body(
-                StatusDetails.builder()
-                    .message(String.format("User with id %s deleted successfully!", id))
-                    .build()
-            );
-    }
+          .status(500)
+          .body(
+            StatusDetails.builder()
+              .message("Error during user creation!")
+              .build()
+          );
+      });
+  }
 
-    @GetMapping("/users/{id}/posts")
-    public List<Post> getUserPosts(@PathVariable Integer id) {
-        return userDaoJPAService.findPosts(id)
-            .map(User::getPosts)
-            .orElseThrow(() -> new UserNotFoundException(id.toString()));
-    }
+  @DeleteMapping("/users/{id}")
+  public ResponseEntity<Object> deleteUser(@PathVariable Integer id) {
+    userDaoJPAService.delete(id);
+    return ResponseEntity
+      .ok()
+      .body(
+        StatusDetails.builder()
+          .message(String.format("User with id %s deleted successfully!", id))
+          .build()
+      );
+  }
+
+  @GetMapping("/users/{id}/posts")
+  public List<Post> getUserPosts(@PathVariable Integer id) {
+    return userDaoJPAService.findPosts(id)
+      .map(User::getPosts)
+      .orElseThrow(() -> new UserNotFoundException(id.toString()));
+  }
 }
