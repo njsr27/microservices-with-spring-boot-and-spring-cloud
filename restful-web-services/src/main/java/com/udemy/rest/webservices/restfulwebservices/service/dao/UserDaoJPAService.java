@@ -1,6 +1,8 @@
 package com.udemy.rest.webservices.restfulwebservices.service.dao;
 
+import com.udemy.rest.webservices.restfulwebservices.service.model.Post;
 import com.udemy.rest.webservices.restfulwebservices.service.model.User;
+import com.udemy.rest.webservices.restfulwebservices.service.repository.PostRepository;
 import com.udemy.rest.webservices.restfulwebservices.service.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,9 @@ public class UserDaoJPAService {
 
   @Autowired
   UserRepository userRepository;
+
+  @Autowired
+  PostRepository postRepository;
 
   public List<User> findAll() {
     return userRepository.findAll();
@@ -34,6 +39,29 @@ public class UserDaoJPAService {
 
   public Optional<User> findPosts(Integer id) {
     return userRepository.findById(id);
+  }
+
+  public User savePost(Integer userId, Post post) {
+    for (User user : userRepository.findAll()) {
+      if (user.getId().equals(userId)) {
+        persistPost(
+          Post.builder()
+            .message(post.getMessage())
+            .title(post.getTitle())
+            .build(),
+          user
+        );
+        return user;
+      }
+    }
+
+    return null;
+  }
+
+  private void persistPost(Post post, User user) {
+    user.getPosts().add(post);
+    postRepository.save(post);
+    userRepository.save(user);
   }
 
 }

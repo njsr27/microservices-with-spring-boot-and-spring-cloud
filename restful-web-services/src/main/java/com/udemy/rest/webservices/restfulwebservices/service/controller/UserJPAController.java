@@ -85,4 +85,25 @@ public class UserJPAController {
       .map(User::getPosts)
       .orElseThrow(() -> new UserNotFoundException(id.toString()));
   }
+
+  @PostMapping("/users/{userId}/posts")
+  public ResponseEntity<StatusDetails> createUserPost(@PathVariable Integer userId, @RequestBody Post post) {
+    return Optional.ofNullable(userDaoJPAService.savePost(userId, post))
+      .map(modifiedUser ->
+        ResponseEntity
+          .created(
+            ServletUriComponentsBuilder
+              .fromCurrentRequest()
+              .path("/{id}")
+              .buildAndExpand(modifiedUser.getId())
+              .toUri()
+          )
+          .body(
+            StatusDetails.builder()
+              .message("Post created successfully!")
+              .build()
+          )
+      ).orElseThrow(() -> new UserNotFoundException(userId.toString()));
+  }
+
 }
