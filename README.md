@@ -15,7 +15,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-First Java project about Micro services I upload to my personal repository, so I'm sure there is a lot of improvement that can be done.
+First Java project about Microservices I upload to my personal repository, so I'm sure there is a lot of improvement that can be done.
 I don't consider myself an expert in the field but I'm always willing to learn everything I can, so feel free to comment any possible
 improvements I could add in the code.
 
