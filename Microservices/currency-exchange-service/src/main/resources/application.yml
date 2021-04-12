@@ -15,6 +15,9 @@ spring:
   h2:
     console:
       enabled: true
+  sleuth:
+    sampler:
+      probabililty: 1.0 #Percentage of messages sent for tracing, in this case, 100% of them
 
 eureka:
   client:
