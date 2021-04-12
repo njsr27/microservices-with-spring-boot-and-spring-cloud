@@ -100,6 +100,12 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                    <image>
+                        <!-- name for the docker image -->
+                        <name>njsr/mmv2-${project.artifactId}:${project.version}</name>
+                    </image>
+                    <!-- Only pull if not present locally -->
+                    <pullPolicy>IF_NOT_PRESENT</pullPolicy>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
