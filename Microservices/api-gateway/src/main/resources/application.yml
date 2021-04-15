@@ -12,6 +12,9 @@ spring:
         locator:
           enabled: true
           lowerCaseServiceId: true
+  sleuth:
+    sampler:
+      probabililty: 1.0 #Percentage of messages sent for tracing, in this case, 100% of them
 
 eureka:
   client:
